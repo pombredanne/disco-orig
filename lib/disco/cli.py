@@ -211,6 +211,7 @@ class Master(clx.server.Server):
                 '-pa', edep('mochiweb'),
                 '-pa', edep('lager'),
                 '-pa', edep('lager_syslog'),
+                '-pa /usr/lib64/erlang/lib/syslog-0.0.1/ebin',
                 '-eval', 'application:start(disco)']
 
     @property
