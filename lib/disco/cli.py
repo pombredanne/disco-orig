@@ -210,6 +210,8 @@ class Master(clx.server.Server):
                 '-pa', epath('ebin'),
                 '-pa', edep('mochiweb'),
                 '-pa', edep('lager'),
+                '-pa', edep('lager_syslog'),
+                '-pa', edep('syslog'),
                 '-eval', 'application:start(disco)']
 
     @property
