@@ -198,7 +198,7 @@ class Master(clx.server.Server):
         def lager_config(log_dir):
             return ['-lager', 'handlers',
                     '[{lager_console_backend, info},'
-                     '{lager_syslog_backend, ["disco", local7, info]}}]',
+                     '{lager_syslog_backend, ["disco", local7, info]}]',
                     '-lager', 'crash_log', '"%s/crash.log"' % (log_dir)]
         return settings['DISCO_ERLANG'].split() + \
                lager_config(settings['DISCO_LOG_DIR']) + \
