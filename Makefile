@@ -51,7 +51,7 @@ EBIN  = master/ebin
 ESRC  = master/src
 EDEP  = master/deps
 
-DEPS     = mochiweb lager
+DEPS     = mochiweb lager lager_syslog syslog
 EDEPS    = $(foreach dep,$(DEPS),$(EDEP)/$(dep)/ebin)
 ELIBS    = $(ESRC) $(ESRC)/ddfs
 ESOURCES = $(foreach lib,$(ELIBS),$(wildcard $(lib)/*.erl))
