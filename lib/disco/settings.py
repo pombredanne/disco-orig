@@ -280,7 +280,7 @@ class DiscoSettings(Settings):
         'DISCO_MASTER_CONFIG':   "os.path.join(DISCO_ROOT, '%s.config' % DISCO_NAME)",
         'DISCO_NAME':            "'disco_%s' % DISCO_PORT",
         'DISCO_LOG_DIR':         "os.path.join(DISCO_ROOT, 'log')",
-        'DISCO_LOG_FACILITY':    "local7",
+        'DISCO_LOG_FACILITY':    "'local7",
         'DISCO_PID_DIR':         "os.path.join(DISCO_ROOT, 'run')",
         'DISCO_PORT':            "8989",
         'DISCO_ROOT':            "os.path.join(DISCO_HOME, 'root')",
