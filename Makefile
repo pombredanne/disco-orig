@@ -107,7 +107,7 @@ doc-clean:
 doc-test:
 	$(MAKE) -C doc doctest -e
 
-install: install-core install-node install-master
+install: install-core install-node install-master install-erl-syslog
 
 uninstall: uninstall-master uninstall-node
 
@@ -138,6 +138,9 @@ uninstall-node:
 	- rm -Rf $(TARGETLIB) $(TARGETSRV)
 
 install-tests: $(TARGETLIB)/ext $(TARGETLIB)/tests
+
+install-erl-syslog: $(TARGETLIB)/$(EDEP)/syslog/priv/syslog.so
+
 
 dialyzer: $(EPLT) master
 	$(DIALYZER) --get_warnings -Wunmatched_returns -Werror_handling --plt $(EPLT) -r $(EBIN)
