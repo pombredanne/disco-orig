@@ -195,13 +195,13 @@ class Master(clx.server.Server):
         settings = self.settings
         epath = lambda p: os.path.join(settings['DISCO_MASTER_HOME'], p)
         edep = lambda d: os.path.join(settings['DISCO_MASTER_HOME'], 'deps', d, 'ebin')
-        def lager_config(log_dir):
+        def lager_config(log_dir, log_facility):
             return ['-lager', 'handlers',
                     '[{lager_console_backend, info},'
-                     '{lager_syslog_backend,["disco", local7, info]}]',
-                    '-lager', 'crash_log', '"%s/crash.log"' % (log_dir)]
+                     '{lager_syslog_backend,["disco", %s, info]}]',
+                    '-lager', 'crash_log', '"%s/crash.log"' % (log_facility, log_dir)]
         return settings['DISCO_ERLANG'].split() + \
-               lager_config(settings['DISCO_LOG_DIR']) + \
+               lager_config(settings['DISCO_LOG_DIR'], settings['DISCO_LOG_FACILITY']) + \
                ['+K', 'true',
                 '+P', '10000000',
                 '-rsh', 'ssh',
@@ -226,6 +226,10 @@ class Master(clx.server.Server):
     @property
     def log_dir(self):
         return self.settings['DISCO_LOG_DIR']
+
+    @property
+    def log_facility(self):
+        return self.settings['DISCO_LOG_FACILITY']
 
     @property
     def pid_dir(self):
