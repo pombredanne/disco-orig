@@ -90,7 +90,12 @@ Possible settings for Disco are as follows:
         .. envvar:: DISCO_LOG_FACILITY
 
                 Logging facility that disco uses.
-                Default is ``'local7'``.
+                Default is ``local7``.
+
+        .. envvar:: DISCO_LOG_LEVEL
+
+                Logging level that disco uses.
+                Default is ``info``.
 
         .. envvar:: DISCO_PID_DIR
 
@@ -281,6 +286,7 @@ class DiscoSettings(Settings):
         'DISCO_NAME':            "'disco_%s' % DISCO_PORT",
         'DISCO_LOG_DIR':         "os.path.join(DISCO_ROOT, 'log')",
         'DISCO_LOG_FACILITY':    "'local7'",
+        'DISCO_LOG_LEVEL':       "'info'",
         'DISCO_PID_DIR':         "os.path.join(DISCO_ROOT, 'run')",
         'DISCO_PORT':            "8989",
         'DISCO_ROOT':            "os.path.join(DISCO_HOME, 'root')",
