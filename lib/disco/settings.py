@@ -140,6 +140,11 @@ Possible settings for Disco are as follows:
                 Only results explictly saved to DDFS won't be garbage collected.
                 Default is ``100 * 365 * 24 * 60 * 60`` (100 years).
 
+        .. envvar:: DATA_GC_INTERVAL
+
+                How long to wait before garbage collecting purged job data.
+                Default is ``12`` (hours).
+
         .. envvar:: DISCO_WORKER_MAX_MEM
 
                 How much memory can be used by worker in total. Worker calls `resource.setrlimit(RLIMIT_AS, limit) <http://docs.python.org/library/resource.html#resource.setrlimit>`_ to set the limit when it starts. Can be either a percentage of total available memory or an exact number of bytes. Note that ``setrlimit`` behaves differently on Linux and Mac OS X, see *man setrlimit* for more information. Default is ``80%`` i.e. 80% of the total available memory.
@@ -297,6 +302,7 @@ class DiscoSettings(Settings):
         'DISCO_USER':            "os.getenv('LOGNAME')",
         'DISCO_JOB_OWNER':       "job_owner()",
         'DISCO_WWW_ROOT':        "os.path.join(DISCO_MASTER_HOME, 'www')",
+        'DATA_GC_INTERVAL':      "12",
 # GC
         'DISCO_GC_AFTER':        "100 * 365 * 24 * 60 * 60",
 # PROXY
