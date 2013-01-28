@@ -8,8 +8,6 @@
 
 -export([start_link/2]).
 
--define(GC_INTERVAL, 2 * ?DAY).
-
 -spec start_link(node(), path()) -> no_return().
 start_link(Master, DataRoot) ->
     try register(temp_gc, self())
@@ -28,7 +26,7 @@ loop(DataRoot) ->
                            [Name || {Name, active, _Start} <- Jobs]),
                 process_dir(DataRoot, Dirs, gb_sets:from_ordset(Purged), Active);
             E ->
-                % fresh install, try again after GC_INTERVAL
+                % fresh install, try again after DATA_GC_INTERVAL
                 error_logger:info_msg("Tempgc: error listing ~p: ~p",
                                       [DataRoot, E]),
                 ok
@@ -36,10 +34,10 @@ loop(DataRoot) ->
     catch K:V ->
             error_logger:info_msg("Tempgc: error contacting master from ~p: ~p:~p",
                                   [node(), K,V])
-            % master busy, try again after GC_INTERVAL
+            % master busy, try again after DATA_GC_INTERVAL
     end,
     error_logger:info_msg("Tempgc: one pass completed on ~p", [node()]),
-    timer:sleep(?GC_INTERVAL),
+    timer:sleep(?DATA_GC_INTERVAL),
     flush(),
     loop(DataRoot).
 
