@@ -251,6 +251,10 @@ Settings used by DDFS:
 
                 Default is ``''``.
 
+        .. envvar:: DDFS_NODE_STARTUP
+
+                The amount of time to wait for a ddfs_node to startup (in minutes).
+                Default is ``'10'``.
 
 The following settings are used by DDFS to determine the number of replicas for data/metadata to keep
 (it is not recommended to use the provided defaults in a multinode cluster):
@@ -332,7 +336,8 @@ class DiscoSettings(Settings):
         'DDFS_TAG_REPLICAS':     "1",
         'DDFS_BLOB_REPLICAS':    "1",
         'DDFS_PARANOID_DELETE':  "''",
-        'DDFS_GC_INITIAL_WAIT':  "''"
+        'DDFS_GC_INITIAL_WAIT':  "''",
+        'DDFS_NODE_STARTUP':  "10"
         }
 
     globals = globals()

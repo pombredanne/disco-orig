@@ -8,10 +8,6 @@
 % Maximum length of tag/blob prefix
 -define(NAME_MAX, 511).
 
-% How long ddfs node startup can take.  The most time-consuming part
-% is the scanning of the tag objects in the node's DDFS volumes.
--define(NODE_STARTUP, (1 * ?MINUTE)).
-
 % How long to wait on the master for replies from nodes.
 -define(NODE_TIMEOUT, (10 * ?SECOND)).
 
